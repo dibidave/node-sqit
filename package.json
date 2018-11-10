@@ -1,0 +1,29 @@
+{
+  "name": "sqit",
+  "version": "0.1.0",
+  "description": "Node server quick kit",
+  "main": "bin/setup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dibidave/node-sqit.git"
+  },
+  "author": "David Brown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dibidave/node-sqit/issues"
+  },
+  "homepage": "https://github.com/dibidave/node-sqit#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bunyan": "^1.8.12",
+    "dateformat": "^3.0.3",
+    "inquirer": "^5.2.0",
+    "moment": "^2.22.0",
+    "mongodb": "^3.0.5",
+    "sendmail": "^1.4.1",
+    "shelljs": "^0.8.1"
+  }
+}
