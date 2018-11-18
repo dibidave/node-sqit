@@ -58,6 +58,12 @@ const Database_Object = {
   from_JSON(JSON_object) {
 
     Object.assign(this, JSON_object);
+
+    this._created_on = new Date(this._created_on);
+
+    if(this._deleted_on !== null) {
+      this._deleted_on = new Date(this._deleted_on);
+    }
   },
 
   delete() {

@@ -73,6 +73,17 @@ module.exports = {
     return promise;
   },
 
+  get_object_by_id: function(collection_name, id) {
+
+    var collection = db.collection(collection_name);
+
+    id = ObjectID(id);
+
+    var promise = collection.findOne({_id: id});
+
+    return promise;
+  },
+
   delete_objects: function(collection_name, filter) {
 
     var collection = db.collection(collection_name);
