@@ -64,8 +64,8 @@ module.exports = {
 
     filter = convert_ids_to_object_ids(filter);
 
-    if(!filter.hasOwnProperty("deleted_on")) {
-      filter["deleted_on"] = null;
+    if(!filter.hasOwnProperty("_deleted_on")) {
+      filter["_deleted_on"] = null;
     }
 
     var promise = collection.find(filter).toArray();
