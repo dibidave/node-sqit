@@ -57,7 +57,7 @@ module.exports = {
     return promise;
   },
 
-  get_objects: function(collection_name, filter) {
+  get_objects: function(collection_name, filter, sort) {
 
     var collection = db.collection(collection_name);
 
@@ -73,7 +73,12 @@ module.exports = {
       filter["_deleted_on"] = null;
     }
 
-    var promise = collection.find(filter).toArray();
+    if(sort !== undefined && sort !== null) {
+      var promise = collection.find(filter).sort(sort).toArray();
+    }
+    else {
+      var promise = collection.find(filter).toArray();
+    }
 
     return promise;
   },
