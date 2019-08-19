@@ -21,6 +21,7 @@
     "bunyan": "^1.8.12",
     "dateformat": "^3.0.3",
     "inquirer": "^5.2.0",
+    "lodash": "^4.17.15",
     "moment": "^2.22.0",
     "mongodb": "^3.0.5",
     "sendmail": "^1.4.1",
