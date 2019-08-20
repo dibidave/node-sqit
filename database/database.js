@@ -133,15 +133,25 @@ var upgrade_database = function(version_upgrade_map, latest_version,
 
   var promise = get_database_version(database_type)
   .then(function(current_database_version) {
-    if(current_database_version < latest_version) {
 
-      var promise = null;
+    if(current_database_version === 0) {
+      return version_upgrade_map[0]()
+      .then(set_database_version.bind(null, latest_version, database_type));
+    }
+    else if(current_database_version < latest_version) {
 
-      promise = version_upgrade_map[current_database_version]()
+      var upgrade_promise = null;
+
+      logger.info("Upgrading from v" + current_database_version + " to v" +
+        (current_database_version + 1));
+
+      upgrade_promise = version_upgrade_map[current_database_version]()
       .then(set_database_version.bind(null, current_database_version + 1,
         database_type)
       ).then(upgrade_database.bind(null, version_upgrade_map, latest_version,
         is_user_database));
+
+      return upgrade_promise;
     }
     else {
       return Promise.resolve();
@@ -271,10 +281,12 @@ var convert_ids_to_object_ids = function(object, is_candidate) {
 };
 
 var create_database = function() {
-  return set_database_version(0, get_metadata_collection_name(false));
+  return Promise.resolve();
 };
 
 var upgrade_database_v_1 = function() {
+
+  logger.info("Renaming metadata collection");
 
   var old_metadata_collection_name = "Metadata";
 
